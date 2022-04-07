@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React, { useState, useEffect } from 'react'
+import { Switch, Route } from 'react-router-dom'
+import Cart from './components/Movies'
+import Everything from './components/Everything'
 
-function App() {
+const App = () => {
+  const [cartid,setCartid] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='mainheading'>
+        <p>Shopping Website</p>
+      </div>
+      <Switch>
+        <Route exact path='/'  render={(props) => <Everything {...props} cartid={cartid} setCartid={setCartid}/>} />
+        <Route exact path='/cart' render={(props) => <Cart {...props} cartid={cartid} setCartid={setCartid}/>} />
+      </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
